@@ -8,10 +8,37 @@
         <link rel="stylesheet" href="styling.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/drive-db"></script>
     </head>
 
     <script>
-        
+        LoadData();
+        async function LoadData(){
+            let data = await drive('1-JbuJ6-p1wczrM6Ikr6BQ8OSk6u3rDU39SXSilagUuE');
+            console.log(data);
+
+            // Create the table
+            let datatable = document.querySelector('#datatable');
+            if(data.length){
+                let columns = Object.getOwnPropertyNames(data[0]);
+                columns.forEach(col => {
+                    let th = document.createElement('th');
+                    th.innerText = col;
+                    datatable.appendChild(th);
+                });
+
+                data.forEach(row => {
+                    let tr = document.createElement('tr');
+                    columns.forEach(col => {
+                        let td = document.createElement('td');
+                        td.innerText = row[col];
+                        tr.appendChild(td);
+                    });
+                    
+                    datatable.appendChild(tr);
+                });
+            }
+        }
     </script>
 
     <div class="leaderboard">
@@ -27,185 +54,6 @@
             </nav>
         </header>
 
-        <table>
-        <thead>
-            <tr>
-                <th class="rank"></th>
-                <th class="name">Student Name:</th>
-                <th class="grade">Grade</th>
-                <th class="kms">Total Km(s)</th>
-            </tr>
-        </thead>
-            <tbody>
-                <tr>
-                    <td class="rank">1</td>
-                    <td class="name">HafezElJ</td>
-                    <td class="grade">11</td>
-                    <td class="kms">1000000000000000001</td>
-                </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td class="name">MattV</td>
-                    <td class="grade">11</td>
-                    <td class="kms">1000000000000000000</td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td class="name">Minati</td>
-                    <td class="grade">9</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">4</td>
-                    <td class="name">Carry</td>
-                    <td class="grade">10</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">5</td>
-                    <td class="name">Steven</td>
-                    <td class="grade">12</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">6</td>
-                    <td class="name">Maraiah</td>
-                    <td class="grade">10</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">7</td>
-                    <td class="name">Johnson</td>
-                    <td class="grade">9</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">1</td>
-                    <td class="name">HafezElJ</td>
-                    <td class="grade">11</td>
-                    <td class="kms">1000000000000000001</td>
-                </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td class="name">MattV</td>
-                    <td class="grade">11</td>
-                    <td class="kms">1000000000000000000</td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td class="name">Minati</td>
-                    <td class="grade">9</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">4</td>
-                    <td class="name">Carry</td>
-                    <td class="grade">10</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">5</td>
-                    <td class="name">Steven</td>
-                    <td class="grade">12</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">6</td>
-                    <td class="name">Maraiah</td>
-                    <td class="grade">10</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">7</td>
-                    <td class="name">Johnson</td>
-                    <td class="grade">9</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">1</td>
-                    <td class="name">HafezElJ</td>
-                    <td class="grade">11</td>
-                    <td class="kms">1000000000000000001</td>
-                </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td class="name">MattV</td>
-                    <td class="grade">11</td>
-                    <td class="kms">1000000000000000000</td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td class="name">Minati</td>
-                    <td class="grade">9</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">4</td>
-                    <td class="name">Carry</td>
-                    <td class="grade">10</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">5</td>
-                    <td class="name">Steven</td>
-                    <td class="grade">12</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">6</td>
-                    <td class="name">Maraiah</td>
-                    <td class="grade">10</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">7</td>
-                    <td class="name">Johnson</td>
-                    <td class="grade">9</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">1</td>
-                    <td class="name">HafezElJ</td>
-                    <td class="grade">11</td>
-                    <td class="kms">1000000000000000001</td>
-                </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td class="name">MattV</td>
-                    <td class="grade">11</td>
-                    <td class="kms">1000000000000000000</td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td class="name">Minati</td>
-                    <td class="grade">9</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">4</td>
-                    <td class="name">Carry</td>
-                    <td class="grade">10</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">5</td>
-                    <td class="name">Steven</td>
-                    <td class="grade">12</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">6</td>
-                    <td class="name">Maraiah</td>
-                    <td class="grade">10</td>
-                    <td class="kms">2.1</td>
-                </tr>
-                <tr>
-                    <td class="rank">7</td>
-                    <td class="name">Johnson</td>
-                    <td class="grade">9</td>
-                    <td class="kms">2.1</td>
-                </tr>
-            </tbody>
-        </table>
+        <table id="datatable"></table>
     </div>
 </html>  
