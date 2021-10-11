@@ -55,6 +55,23 @@ class ArrayToHTML {
         String [] array = new String[txtFileLength];
 
         for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
+            array[txtFileLength]=scanner.nextLine();
+        }
+
+        scanner.close();
+
+        return array;
+
+    }
+
+    // Method to initialize all .txt files into Arrays:
+    public static String[] TxtToArrayFormatted(String fileName, int txtFileLength) throws FileNotFoundException {
+
+        File file = new File(fileName);
+        Scanner scanner = new Scanner(file);
+        String [] array = new String[txtFileLength];
+
+        for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
             array[txtFileLength]=formattedName(scanner.nextLine());
         }
 
@@ -75,34 +92,34 @@ class ArrayToHTML {
     public static String HTMLCode(int arrayLength, String [] allNames, String [] allGrades, String [] allTotalKilometres) {
         StringBuilder HTMLcode = new StringBuilder();
 
-        HTMLcode.append("<tbody>").append("\n")
-                .append("\t").append("<tr>").append("\n");
+        HTMLcode.append("\t").append("<tbody>").append("\n")
+                .append("\t").append("\t").append("<tr>").append("\n");
 
         for(i = 0; i < arrayLength; i++) {
 
             i++; String rank = Integer.toString(i); i--;
 
             if(i == 0) {
-                HTMLcode.append("\t").append("\t");
+                HTMLcode.append("\t").append("\t").append("\t");
             } else {
-                HTMLcode.append("\n").append("\t").append("\t");
+                HTMLcode.append("\n").append("\t").append("\t").append("\t");
             }
 
             HTMLcode.append(tableDataFormatted("ranks", rank)).append("\n")
-                    .append("\t").append("\t").append(tableDataFormatted("name", allNames[i])).append("\n")
-                    .append("\t").append("\t").append(tableDataFormatted("grade", allGrades[i])).append("\n")
-                    .append("\t").append("\t").append(tableDataFormatted("kms", allTotalKilometres[i])).append("\n")
-                    .append("\t").append("</tr>").append("\n");
+                    .append("\t").append("\t").append("\t").append(tableDataFormatted("name", allNames[i])).append("\n")
+                    .append("\t").append("\t").append("\t").append(tableDataFormatted("grade", allGrades[i])).append("\n")
+                    .append("\t").append("\t").append("\t").append(tableDataFormatted("kms", allTotalKilometres[i])).append("\n")
+                    .append("\t").append("\t").append("</tr>").append("\n");
 
             if(i == arrayLength-1) {
                 HTMLcode.append("");
             } else {
-                HTMLcode.append("\t").append("<tr>");
+                HTMLcode.append("\t").append("\t").append("<tr>");
             }
 
         }
 
-        HTMLcode.append("</tbody>");
+        HTMLcode.append("\t").append("</tbody>");
 
         return HTMLcode.toString();
 
@@ -112,7 +129,7 @@ class ArrayToHTML {
 
         int maxArrayLength = ArrayMax(namesTxt);
 
-        String [] namesArray = TxtToArray(namesTxt, ArrayMax(namesTxt));
+        String [] namesArray = TxtToArrayFormatted(namesTxt, ArrayMax(namesTxt));
         String [] gradesArray = TxtToArray(gradesTxt, ArrayMax(gradesTxt));
         String [] kmsArray = TxtToArray(kilometresTxt, ArrayMax(kilometresTxt));
 

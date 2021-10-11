@@ -8,12 +8,13 @@
         <link rel="stylesheet" href="styling.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2">
     </head>
 
     <div class="leaderboard">
         <header>
             <h1>CW's Walk For Wenjack Leaderboard</h1>
-            <img src=" " alt="">
+            <h2 id="localUpdateDate"></h2>
             <nav>
                 <a href="" class="active" id="CW">Cairine Wilson</a>
                 <a href="" id="gr9">Grade 9</a>
@@ -22,6 +23,17 @@
                 <a href="" id="gr12">Grade 12</a>
             </nav>
         </header>
+
+        <script>
+            var d = new Date();
+            var date = d.getDate();
+            var year = d.getFullYear();
+            var month = d.getMonth();
+            var monthArr = ["January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
+            month = monthArr[month];
+
+            document.getElementById("localUpdateDate").innerHTML = ("LAST UPDATED: " + (date+" "+month+", "+year)).italics();
+        </script>
 
         <table id="datatable">
         <thead>
@@ -36,31 +48,31 @@
             <tr>
                 <td class=ranks>1</td>
                 <td class=name>Jennifer Abma</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
                 <td class=ranks>2</td>
                 <td class=name>Anne-Marie Robinson-Sisk</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
                 <td class=ranks>3</td>
                 <td class=name>Jocelyn Brown</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
                 <td class=ranks>4</td>
                 <td class=name>Lisa Fabbro</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
                 <td class=ranks>5</td>
                 <td class=name>Luke Simoneau</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
