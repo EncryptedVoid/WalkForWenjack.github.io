@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.lang.StringBuilder;
+import java.lang.Math;
 
 class ArrayToHTML {
 
@@ -65,7 +66,7 @@ class ArrayToHTML {
     }
 
     // Method to initialize all .txt files into Arrays:
-    public static String[] TxtToArrayFormatted(String fileName, int txtFileLength) throws FileNotFoundException {
+    public static String[] TxtToArrayStringFormatted(String fileName, int txtFileLength) throws FileNotFoundException {
 
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
@@ -73,6 +74,25 @@ class ArrayToHTML {
 
         for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
             array[txtFileLength]=formattedName(scanner.nextLine());
+        }
+
+        scanner.close();
+
+        return array;
+
+    }
+
+    // Method to initialize all .txt files into Arrays:
+    public static String[] TxtToArrayIntFormatted(String fileName, int txtFileLength) throws FileNotFoundException {
+
+        File file = new File(fileName);
+        Scanner scanner = new Scanner(file);
+        String [] array = new String[txtFileLength];
+        final int factor = 10;
+
+        for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
+            double x = ((Math.floor((Double.parseDouble(scanner.nextLine()))*factor))/factor);
+            array[txtFileLength] = String.valueOf(x);
         }
 
         scanner.close();
@@ -129,9 +149,9 @@ class ArrayToHTML {
 
         int maxArrayLength = ArrayMax(namesTxt);
 
-        String [] namesArray = TxtToArrayFormatted(namesTxt, ArrayMax(namesTxt));
+        String [] namesArray = TxtToArrayStringFormatted(namesTxt, ArrayMax(namesTxt));
         String [] gradesArray = TxtToArray(gradesTxt, ArrayMax(gradesTxt));
-        String [] kmsArray = TxtToArray(kilometresTxt, ArrayMax(kilometresTxt));
+        String [] kmsArray = TxtToArrayIntFormatted(kilometresTxt, ArrayMax(kilometresTxt));
 
         String finalCode = HTMLCode(maxArrayLength, namesArray, gradesArray, kmsArray);
 

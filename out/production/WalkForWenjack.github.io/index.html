@@ -25,7 +25,14 @@
         </header>
 
         <script>
-            document.getElementById("localUpdateDate").innerHTML = ("LAST UPDATED: " + Date()).italics();
+            var d = new Date();
+            var date = d.getDate();
+            var year = d.getFullYear();
+            var month = d.getMonth();
+            var monthArr = ["January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
+            month = monthArr[month];
+
+            document.getElementById("localUpdateDate").innerHTML = ("LAST UPDATED: " + (date+" "+month+", "+year)).italics();
         </script>
 
         <table id="datatable">
@@ -41,31 +48,31 @@
             <tr>
                 <td class=ranks>1</td>
                 <td class=name>Jennifer Abma</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
                 <td class=ranks>2</td>
                 <td class=name>Anne-Marie Robinson-Sisk</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
                 <td class=ranks>3</td>
                 <td class=name>Jocelyn Brown</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
                 <td class=ranks>4</td>
                 <td class=name>Lisa Fabbro</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
                 <td class=ranks>5</td>
                 <td class=name>Luke Simoneau</td>
-                <td class=grade>Cw Staff</td>
+                <td class=grade>CW Staff</td>
                 <td class=kms>0.00</td>
             </tr>
             <tr>
