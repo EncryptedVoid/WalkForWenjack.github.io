@@ -6,10 +6,10 @@ import java.lang.StringBuilder;
 class ArrayToHTML {
 
     public static int i = 0;
-    public static final String basicFilePath = "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git";
-    public static final String namesTxt = basicFilePath+"\\Names.txt",
-                               gradesTxt = basicFilePath+"\\Grades.txt",
-                               kilometresTxt = basicFilePath+"\\Kilometres.txt";
+    public static final String basicFilePath = "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\";
+    public static final String namesTxt = basicFilePath+"Names.txt",
+                               gradesTxt = basicFilePath+"Grades.txt",
+                               kilometresTxt = basicFilePath+"Kilometres.txt";
 
     // How long the Arrays should be based on the length of the English.txt File:
     public static int ArrayMax(String fileName) throws FileNotFoundException {
