@@ -11,12 +11,19 @@
         <link rel="stylesheet" href="https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2">
     </head>
 
+    <div id="localUpdateDateDiv">
+        <table>
+            <tr>
+                <td id="localUpdateDate"></td>
+            </tr>
+        </table>
+    </div>
+
     <div id=container>
-    
+
         <div id="leaderboard">
             <header>
                 <h1>CW's Walk For Wenjack Leaderboard</h1>
-                <h2 id="localUpdateDate"></h2>
                 <nav>
                     <a href="" class="active" id="CW">Cairine Wilson</a>
                     <a href="" id="gr9">Grade 9</a>
@@ -27,13 +34,7 @@
             </header>
     
             <script>
-                var d = new Date();
-                var date = d.getDate();
-                var year = d.getFullYear();
-                var monthArr = ["January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
-                var month = monthArr[month];
-    
-                document.getElementById("localUpdateDate").innerHTML = ("LAST UPDATED: October 11th, 2021 @ 6:28PM").italics();
+                document.getElementById("localUpdateDate").innerHTML = ("LAST UPDATED: October 12th, 2021 @ 7:46PM").italics();
             </script>
     
             <table id="datatable">

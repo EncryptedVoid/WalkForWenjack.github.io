@@ -22,8 +22,19 @@ body {
 }
 
 .flex-child:first-child {
-  margin-right: 10px;
+  margin-right: 50px;
 } 
+
+#localUpdateDateDiv {
+  margin: 2.5rem;
+  margin-right: 2.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding: auto;
+  height: auto;
+  border-radius: 1rem;
+  outline: 1rem solid white;
+}
 
 #leaderboard {
   flex: 2;
@@ -31,17 +42,20 @@ body {
   margin: 2.5rem;
   border-radius: 1rem;
   outline: 1rem solid white;
+  padding: auto;
   height: auto;
 }
 
 #information{
   flex: 1;
   max-width: auto;
-  margin: 2.5rem;
+  margin-right: 2.5rem;
+  margin-top: 2.5rem;
   border-radius: 1rem;
   outline: 1rem solid white;
-  font-size: 1.5rem;
-  height: 54rem;
+  font-size: auto;
+  padding: auto;
+  height: 33.25rem;
 }
 
 a {
@@ -69,7 +83,7 @@ h1 {
 }
 
 h2 {
-  font-size: 18;
+  font-size: auto;
   line-height: 13;
   position: absolute;
   margin-left: 2.5rem;
