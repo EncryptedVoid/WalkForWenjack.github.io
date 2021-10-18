@@ -13,26 +13,57 @@
   box-sizing: border-box;
 }
 
-.leaderboard {
-  max-width: 50rem;
-  margin: 5rem auto;
+body {
+  background-image: linear-gradient(45deg, rgb(77, 0, 90), rgb(167, 0, 218));
+} 
+
+#localUpdateDateDiv {
+  margin: 2.5rem;
+  padding: auto;
+  height: auto;
   border-radius: 1rem;
-  box-shadow: 4px 4px 16px 2px #aaa;
-  font-family: sans-serif;
+  outline: 1rem solid white;
+}
+
+#leaderboard {
+  margin: 2.5rem;
+  padding: auto;
+  height: auto;
+  border-radius: 1rem;
+  outline: 1rem solid white;
+}
+
+#information{
+  margin: 2.5rem;
+  padding: auto;
+  height: auto;
+  border-radius: 1rem;
+  outline: 1rem solid white;
 }
 
 a {
   text-decoration: none;
+  font-weight: bolder;
   color: inherit;
 }
 
-header {
-  background-color: #ff7500;
-  color: white;
+#infoHeader {
+  background-image: linear-gradient(45deg, rgb(230, 103, 0), rgb(255, 115, 0), rgb(0, 26, 255), rgb(39, 60, 251));
+  color: whitesmoke;
   text-transform: uppercase;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  height: 17rem;
+  height: 10rem;
+  position: relative;
+}
+
+header {
+  background-image: linear-gradient(45deg, rgb(230, 103, 0), rgb(255, 115, 0), rgb(0, 26, 255), rgb(39, 60, 251));
+  color: whitesmoke;
+  text-transform: uppercase;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  height: 12rem;
   position: relative;
 }
 
@@ -45,7 +76,7 @@ h1 {
 }
 
 h2 {
-  font-size: 18;
+  font-size: auto;
   line-height: 13;
   position: absolute;
   margin-left: 2.5rem;
@@ -77,11 +108,12 @@ nav a {
   padding-top: 2rem;
   padding-bottom: 1rem;
   display: inline-block;
-  font-weight: bold;
+  font-weight: bolder;
+  margin-right: 1rem;
 }
 
 nav a.active {
-  border-bottom: 4px solid #f0a900;
+  border-bottom: 4px solid white;
 }
 
 nav a:first-child {
@@ -118,11 +150,11 @@ tbody tr:nth-child(2n) {
   background-color: #1f232c;
 }
 
-.name {
+#leftText {
   text-align: left;
 }
 
-.rank,.grade,.kms {
+#rightText {
   text-align: right;
 }
 
@@ -131,7 +163,7 @@ tbody tr:nth-child(2n) {
   padding-left: 1.75rem;
 }
 
-.grade,.kms {
+#rightText {
   width: 15ch;
 }
 
@@ -142,5 +174,3 @@ th {
 td {
   padding: 1.25rem 1.25rem 1rem;
 }
-
-/* #1f232c */

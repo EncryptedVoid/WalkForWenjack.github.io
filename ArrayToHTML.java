@@ -7,10 +7,12 @@ import java.lang.Math;
 class ArrayToHTML {
 
     public static int i = 0;
-    public static final String basicFilePath = "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\";
+    public static final String basicFilePath = "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\";
     public static final String namesTxt = basicFilePath+"Names.txt",
                                gradesTxt = basicFilePath+"Grades.txt",
-                               kilometresTxt = basicFilePath+"Kilometres.txt";
+                               kilometresTxt = basicFilePath+"Kilometres.txt",
+                               donationsTxt = basicFilePath+"MoneyRaised.txt",
+                               homeroomTxt = basicFilePath+"Homeroom.txt";
 
     // How long the Arrays should be based on the length of the English.txt File:
     public static int ArrayMax(String fileName) throws FileNotFoundException {
@@ -104,12 +106,15 @@ class ArrayToHTML {
     // Method for formatting individual table data
     public static String tableDataFormatted(String dataName, String arrayData) {
 
-        return "<td class="+dataName+">"+arrayData+"</td>";
+        return "<th class=\"rightText\" id="+dataName+">"+arrayData+"</td>";
 
     }
 
     // Method for formatting all arrays and strings into a singular output
-    public static String HTMLCode(int arrayLength, String [] allNames, String [] allGrades, String [] allTotalKilometres) {
+    public static String HTMLCode(
+            int arrayLength, String [] allHomerooms, String [] allDonations, String [] allNames,
+            String [] allGrades, String [] allTotalKilometres) {
+
         StringBuilder HTMLcode = new StringBuilder();
 
         HTMLcode.append("\t").append("<tbody>").append("\n")
@@ -126,9 +131,11 @@ class ArrayToHTML {
             }
 
             HTMLcode.append(tableDataFormatted("ranks", rank)).append("\n")
+                    .append("\t").append("\t").append("\t").append(tableDataFormatted("homeroom", allHomerooms[i])).append("\n")
                     .append("\t").append("\t").append("\t").append(tableDataFormatted("name", allNames[i])).append("\n")
                     .append("\t").append("\t").append("\t").append(tableDataFormatted("grade", allGrades[i])).append("\n")
                     .append("\t").append("\t").append("\t").append(tableDataFormatted("kms", allTotalKilometres[i])).append("\n")
+                    .append("\t").append("\t").append("\t").append(tableDataFormatted("donation", allDonations[i])).append("\n")
                     .append("\t").append("\t").append("</tr>").append("\n");
 
             if(i == arrayLength-1) {
@@ -147,13 +154,15 @@ class ArrayToHTML {
 
     public static void main(String [] args) throws FileNotFoundException {
 
-        int maxArrayLength = ArrayMax(namesTxt);
+        final int maxArrayLength = ArrayMax(namesTxt);
 
-        String [] namesArray = TxtToArrayStringFormatted(namesTxt, ArrayMax(namesTxt));
-        String [] gradesArray = TxtToArray(gradesTxt, ArrayMax(gradesTxt));
-        String [] kmsArray = TxtToArrayIntFormatted(kilometresTxt, ArrayMax(kilometresTxt));
+        final String [] namesArray = TxtToArrayStringFormatted(namesTxt, maxArrayLength);
+        final String [] kmsArray = TxtToArrayIntFormatted(kilometresTxt, maxArrayLength);
+        final String [] gradesArray = TxtToArray(gradesTxt, maxArrayLength);
+        final String [] homeroomsArray = TxtToArray(homeroomTxt, maxArrayLength);
+        final String [] donationsArray = TxtToArrayIntFormatted(donationsTxt, maxArrayLength);
 
-        String finalCode = HTMLCode(maxArrayLength, namesArray, gradesArray, kmsArray);
+        String finalCode = HTMLCode(maxArrayLength, homeroomsArray, donationsArray, namesArray, gradesArray, kmsArray);
 
         System.out.println(finalCode);
 
