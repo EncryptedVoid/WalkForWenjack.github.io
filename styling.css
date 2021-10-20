@@ -156,15 +156,12 @@ tbody tr:nth-child(2n) {
 
 #rightText {
   text-align: right;
+  width: 15ch;
 }
 
 .rank {
   width: 4ch;
   padding-left: 1.75rem;
-}
-
-#rightText {
-  width: 15ch;
 }
 
 th {

@@ -35,7 +35,9 @@ class ArrayToHTML {
     public static String formattedName(String name) {
         StringBuilder formattedName = new StringBuilder();
 
-        for(i = 0; i < name.length(); i++) {
+        name = name + "z";
+
+        for(i = 0; i < name.length()-1; i++) {
             if(i == 0) {
                 formattedName.append(name.charAt(i));
             } else if((name.charAt(i)+"").equals("-") || (name.charAt(i)+"").equals(" ")) {
