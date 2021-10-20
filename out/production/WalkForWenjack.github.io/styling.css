@@ -17,23 +17,7 @@ body {
   background-image: linear-gradient(45deg, rgb(77, 0, 90), rgb(167, 0, 218));
 } 
 
-#localUpdateDateDiv {
-  margin: 2.5rem;
-  padding: auto;
-  height: auto;
-  border-radius: 1rem;
-  outline: 1rem solid white;
-}
-
-#leaderboard {
-  margin: 2.5rem;
-  padding: auto;
-  height: auto;
-  border-radius: 1rem;
-  outline: 1rem solid white;
-}
-
-#information{
+.tableDiv {
   margin: 2.5rem;
   padding: auto;
   height: auto;
@@ -156,15 +140,12 @@ tbody tr:nth-child(2n) {
 
 #rightText {
   text-align: right;
+  width: 15ch;
 }
 
 .rank {
   width: 4ch;
   padding-left: 1.75rem;
-}
-
-#rightText {
-  width: 15ch;
 }
 
 th {
