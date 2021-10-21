@@ -1,3 +1,4 @@
+Ms. Miller
 Ms. Robin
 Mr. Poortinga
 Ms. Dewar
@@ -7,36 +8,37 @@ Mme. Lamoureux
 Mme Dugal
 Ms. Trumpower
 Ms. Robin
+Ms. Abma
+Mme. Napoleon
 Mrs. A Hiemstra
+Mr. Meservia
+Ms. Jones
 Ms. Robin
 Ms. Abma
 Mme Dugal
+Mme. Lamoureux
 Mr. Anderson
 Mr. Anderson
 Mr. Meservia
 Ms. MacDougall
-Mme. Napoleon
 Ms. Brown
 Mr. C Hiemstra
-Ms. Abma
-Ms. Jones
-Mr. Miservia
 Mme. Lamoureux
 Mme. Lamoureux
 Mr. Puige
-Ms. Miller
 Ms. Abma
-Napoleon
+Mme. Napoleon
+Mr. Meservia
 Spare
 Ms. Abma
+Ms. Fabbro
 Mr. MacDougall
 Ms.Donaghy
 Ms. Dewar
-Mme. Lamoureux
 Ms. Abma
 Ms. Loder
-Mr. Sacharuk
 Spare
+Mr. Sacharuk
 Ms. Robin
 Ms. Abma
 Ms. Farquar
@@ -49,6 +51,7 @@ Ms. Dewar
 Ms. Farquar
 Ms. Robin
 Ms. Farquar
+Ms. Abma
 Ms. MacDougall
 Mme. Lamoureux
 Ms. Dewar

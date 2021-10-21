@@ -54,7 +54,7 @@ class ArrayToHTML {
 
         for(i = 0; i < name.length()-1; i++) { // For loop to capitalize name in NameArray
             if(i == 0) {
-                formattedName.append(name.charAt(i));
+                formattedName.append((name.charAt(i)+"").toUpperCase());
             } else if((name.charAt(i)+"").equals("-") || (name.charAt(i)+"").equals(" ")) {
                 formattedName.append(name.charAt(i));
                 i++;
