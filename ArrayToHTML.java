@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.lang.StringBuilder;
-import java.lang.Math;
 
 class ArrayToHTML {
 
@@ -65,7 +64,6 @@ class ArrayToHTML {
                 formattedName.append((name.charAt(i)+"").toLowerCase());
             }
         }
-
         return formattedName.toString();
     }
 
