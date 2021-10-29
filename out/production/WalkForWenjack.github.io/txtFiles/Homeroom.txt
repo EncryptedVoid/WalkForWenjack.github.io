@@ -1,73 +1,78 @@
-Mme. Lamoureux
-Ms. Robin
-Ms. Robin
-Ms. Miller
-Mme. Dugal
 Ms. Trumpower
-Ms. Robin
-Ms. Robin
-Ms. Dewar
-Mr. Puige
+Ms. Brown
 Ms. Abma
+Mme. Dugal
+Mr. Meservia
+Ms. Miller
+Mme. Lamoureux
+Mr. Meservia
+Ms. Robin
+Ms. Harman
+Mme. Napoleon
+Ms.Donaghy
+Ms. Fabbro
+Ms. Jones
 Mr. Cleveland
 Ms. Robin
-Mme. Napoleon
+Ms. Brown
+Ms. Gupta
+Mr. MacDougall
+Ms.Donaghy
+Ms. Dewar
+Ms. Jones
+Ms. MacDougall
+Ms. Abma
+Ms. Farquhar
+Mme. Lamoureux
+Mr. Meservia
+Ms. Farquhar
+Mrs. A Hiemstra
+Ms. Robin
+Ms. Robin
+Ms. Robin
+Mr. Puige
+Ms. Abma
+Mme. Dugal
+Ms. Robin
 Ms. Robin
 Mr. Poortinga
-Ms. Abma
-Mr. Meservia
-Ms. Jones
 Mme Dugal
 Mr. Anderson
-Ms. Brown
-Ms. Robin
-Mme. Lamoureux
-Ms. Harman
-Ms. Gupta
-Mrs. A Hiemstra
 Ms. MacDougall
-Mr. Meservia
 Mr. Puige
-Mr. MacDougall
 Ms. MacDougall
 Ms. Abma
 Ms. Abma
+Ms. Robin
 Mme Dugal
 Mme. Lamoureux
-Ms. Robin
-Ms.Donaghy
+Ms. MacDougall
 Mr. Cleveland
 Ms. Robin
 Mr. C Hiemstra
 Mme. Lamoureux
 Mme. Lamoureux
-Mr. Puige
-Ms. Abma
 Mme. Napoleon
-Ms. Fabbro
-Mr. Meservia
 Spare
-Ms. Abma
 Ms. Dewar
+Ms. Abma
+Mr. Puige
 Ms. Dewar
 Ms. Loder
-Ms. Farquhar
-Ms. Farquhar
 Spare
-Mr. Sacharuk
 Mr. Meservia
+Mr. Sacharuk
 Ms. Robin
-Ms. Abma
 Mr. C Hiemstra
 Ms. MacDougall
+Ms. Abma
 Ms. Abma
 Ms. MacDougall
 Ms. Farquhar
 Mr. Cleveland
 Ms. Abma
-Ms.Donaghy
-Mme. Lamoureux
 Ms. Dewar
+Mme. Lamoureux
 Mme. Lamoureux
 Ms. MacDougall
 Ms. MacDougall
@@ -76,5 +81,4 @@ Ms. MacDougall
 Mr. C Hiemstra
 Mr. C Hiemstra
 Ms. Abma
-Ms. MacDougall
 Ms. MacDougall
