@@ -116,8 +116,13 @@ class JavaHTMLDataAutomation {
                 Scanner scanner = new Scanner(file);
                 String [] array = new String[txtFileLength];
 
-                for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
-                    array[txtFileLength] = unitFirst+ scanner.nextLine() +unitLast;
+                for(i=0; i<txtFileLength;i++){
+                    if(i++ != txtFileLength-1) {
+                        if(scanner.nextLine().equals("CW Staff")) {
+                            unitFirst = ""; unitLast = "";
+                        }
+                        array[i] = unitFirst+scanner.nextLine()+unitLast;
+                    }
                 }
 
                 scanner.close();
@@ -129,18 +134,18 @@ class JavaHTMLDataAutomation {
             // Method for writing to any file and used to write to .html files and .txt files based on the spreadsheet
             public static void Writer(String material, String HTMLFileName) throws IOException {
                 File thisFile = new File(HTMLFileName);
-                BufferedWriter GoergeOrwell = new BufferedWriter(new FileWriter(thisFile));
-                GoergeOrwell.write(material);
-                GoergeOrwell.close();
+                BufferedWriter Orwell = new BufferedWriter(new FileWriter(thisFile));
+                Orwell.write(material);
+                Orwell.close();
             }
 
             // Method for formatting all arrays and strings into a singular output
             public static String HTML(int arrayLength, String [] category1Data, String [] category2Data, String [] category3Data,
-                                      String [] category4Data, String [] category5Data, String HTMLStarter, String HTMLEnder) {
+                                      String [] category4Data, String [] category5Data, String HTMLHeader, String HTMLFooter) {
 
                 StringBuilder HTMLcode = new StringBuilder();
 
-                HTMLcode.append(HTMLStarter);
+                HTMLcode.append(HTMLHeader);
 
                 HTMLcode.append("\t").append("<tbody>").append("\n")
                         .append("\t").append("\t").append("<tr>").append("\n");
@@ -174,18 +179,22 @@ class JavaHTMLDataAutomation {
 
                 HTMLcode.append("\t").append("</tbody>");
 
-                HTMLcode.append(HTMLEnder);
+                HTMLcode.append(HTMLFooter);
 
                 return HTMLcode.toString();
 
             }
+
         }
 
         // Void for holding all initiation of process into main(String [] args)
-        public static void Initiate() throws IOException {
+        public static void Execute() throws IOException {
 
             // For adding dialogue to the console
             Speech.start();
+
+            // For completing/Updating the index.html data statuses
+            Coding.Winners();
 
             // For completing/Updating the classroom data statuses
             Coding.WinnersByKms.classroom();
@@ -207,6 +216,54 @@ class JavaHTMLDataAutomation {
         public static String Time() {
             return "" + java.util.Calendar.getInstance().getTime() + "";
         }
+
+        public static final String WinnerIndexHeader = """
+                <!DOCTYPE html>
+
+                <html lang="en">
+                    <head>
+                        <title>CW's Walk For Wenjack Leaderboard</title>
+                        <meta charset="UTF-8">
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <link rel="stylesheet" href="styling.css">
+                        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        <link rel="stylesheet" href="https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2">
+                    </head>
+
+                    <body>
+
+                        <div class="tableDiv" id="localUpdateDateDiv">
+                            <table>
+                                """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""
+                                <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
+                            </table>
+                        </div>
+
+                        <div id="buttonDiv">
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
+                            <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
+                        </div>
+
+                        <div class="tableDiv" id="leaderboard">
+                            <header>
+                                <h1>CW's Walk For Wenjack Leaderboard - Participants</h1>
+                            </header>
+
+                            <table id="datatable">
+                                <thead>
+                                    <tr>
+                                        <th id="rank"></th>
+                                        <th id="homeroom">Teacher/ClassCode:</th>
+                                        <th id="name">Name:</th>
+                                        <th id="grade">Grade:</th>
+                                        <th id="kms">Kilometres(s):</th>
+                                        <th id="donation">Donations:</th>
+                                    </tr>
+                                </thead>
+                
+                """;
 
         public static final String ParticipantKmsHeader = """
                 <!DOCTYPE html>
@@ -250,11 +307,11 @@ class JavaHTMLDataAutomation {
                                 <thead>
                                     <tr>
                                         <th id="rank"></th>
-                                        <th class="leftText" id="homeroom">Homeroom:</th>
-                                        <th class="leftText" id="name">Participant Name:</th>
-                                        <th class="rightText" id="grade">Grade</th>
-                                        <th class="rightText" id="kms">Total Km(s)</th>
-                                        <th class="rightText" id="donation">$ raised:</th>
+                                        <th id="homeroom">Homeroom:</th>
+                                        <th id="name">Participant Name:</th>
+                                        <th id="grade">Grade</th>
+                                        <th id="kms">Total Km(s)</th>
+                                        <th id="donation">$ raised:</th>
                                     </tr>
                                 </thead>
                 
@@ -302,11 +359,11 @@ class JavaHTMLDataAutomation {
                                 <thead>
                                     <tr>
                                         <th id="rank"></th>
-                                        <th class="leftText" id="homeroom">Homeroom:</th>
-                                        <th class="leftText" id="name">Participant Name:</th>
-                                        <th class="rightText" id="grade">Grade</th>
-                                        <th class="rightText" id="kms">Total Km(s)</th>
-                                        <th class="rightText" id="donation">$ raised:</th>
+                                        <th id="homeroom">Homeroom:</th>
+                                        <th id="name">Participant Name:</th>
+                                        <th id="grade">Grade</th>
+                                        <th id="kms">Total Km(s)</th>
+                                        <th id="donation">$ raised:</th>
                                     </tr>
                                 </thead>
                                 
@@ -337,7 +394,7 @@ class JavaHTMLDataAutomation {
                         </div>
 
                         <div id="buttonDiv">
-                            <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesclassroomKms.html">PARTICIPANT LEADERBOARD</a></button>
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
                         </div>
 
@@ -354,11 +411,11 @@ class JavaHTMLDataAutomation {
                                 <thead>
                                     <tr>
                                         <th id="rank"></th>
-                                        <th class="leftText" id="homeroom">Class Code:</th>
-                                        <th class="leftText" id="name">Class Teacher:</th>
-                                        <th class="rightText" id="grade">Class Size:</th>
-                                        <th class="rightText" id="kms">Average Kms:</th>
-                                        <th class="rightText" id="donation">Average Donations:</th>
+                                        <th id="homeroom">Class Code:</th>
+                                        <th id="name">Class Teacher:</th>
+                                        <th id="grade">Class Size:</th>
+                                        <th id="kms">Average Kms:</th>
+                                        <th id="donation">Average Donations:</th>
                                     </tr>
                                 </thead>
                                 
@@ -389,7 +446,7 @@ class JavaHTMLDataAutomation {
                         </div>
                                 
                         <div id="buttonDiv">
-                            <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesclassroomKms.html">PARTICIPANT LEADERBOARD</a></button>
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
                         </div>
                                 
@@ -406,11 +463,11 @@ class JavaHTMLDataAutomation {
                                 <thead>
                                     <tr>
                                         <th id="rank"></th>
-                                        <th class="leftText" id="homeroom">Class Code:</th>
-                                        <th class="leftText" id="name">Class Teacher:</th>
-                                        <th class="rightText" id="grade">Class Size:</th>
-                                        <th class="rightText" id="kms">Average Kms:</th>
-                                        <th class="rightText" id="donation">Average Donations:</th>
+                                        <th id="homeroom">Class Code:</th>
+                                        <th id="name">Class Teacher:</th>
+                                        <th id="grade">Class Size:</th>
+                                        <th id="kms">Average Kms:</th>
+                                        <th id="donation">Average Donations:</th>
                                     </tr>
                                 </thead>
                                 
@@ -453,6 +510,7 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
             public static String [] totalStudents(String winnerCategory) throws FileNotFoundException {
                 array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"totalStudents.txt", arrayMax(winnerCategory), "Grade ", "");
 
@@ -462,6 +520,7 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
             public static String [] classDonations(String winnerCategory) throws FileNotFoundException {
                 array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"classDonations.txt", arrayMax(winnerCategory), "$", "");
 
@@ -472,6 +531,7 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
             public static String [] classKms(String winnerCategory) throws FileNotFoundException {
                 array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"classKms.txt", arrayMax(winnerCategory), "", "kms");
 
@@ -482,6 +542,7 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
             public static String [] classTeachers(String winnerCategory) throws FileNotFoundException {
                 array = Vitals.Operations.TxtToArray(txtFilePath+winnerCategory+"classTeachers.txt", arrayMax(winnerCategory), true);
 
@@ -491,6 +552,7 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
         }
 
         // Class for all Participant data (PD) values
@@ -515,6 +577,7 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
             public static String [] participantGrades(String winnerCategory) throws FileNotFoundException {
                 array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantGrades.txt", arrayMax(winnerCategory), "Grade ", "");
 
@@ -524,6 +587,7 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
             public static String [] participantDonations(String winnerCategory) throws FileNotFoundException {
                 array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantDonations.txt", arrayMax(winnerCategory), "$", "");
 
@@ -533,6 +597,7 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
             public static String [] participantKms(String winnerCategory) throws FileNotFoundException {
                 array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantKms.txt", arrayMax(winnerCategory), "", "kms");
 
@@ -542,6 +607,7 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
             public static String [] participantTeachers(String winnerCategory) throws FileNotFoundException {
                 array = Vitals.Operations.TxtToArray(txtFilePath+winnerCategory+"participantTeachers.txt", arrayMax(winnerCategory), true);
 
@@ -551,6 +617,72 @@ class JavaHTMLDataAutomation {
 
                 return array;
             }
+
+        }
+
+        // Class for all winner data (WD) values
+        public static class WinnerData {
+
+            // Setting file path String for any of the required files so as to shorten the String given as the argument
+            public static final String txtFilePath =
+                    "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\WinnerData\\";
+
+            static String [] array = null;
+
+            public static int arrayMax() throws FileNotFoundException {
+                return Vitals.Operations.ArrayMaxCalc(txtFilePath+"winnerNames.txt");
+            }
+
+            public static String [] winnerNames() throws FileNotFoundException {
+                array = Vitals.Operations.TxtToArray(txtFilePath+"winnerNames.txt", arrayMax(), true);
+
+                for(i = 0; i < arrayMax(); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("winnerName", array[i]);
+                }
+
+                return array;
+            }
+
+            public static String [] winnerLevel() throws FileNotFoundException {
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerLevel.txt", arrayMax(), "Grade ", "");
+
+                for(i = 0; i < arrayMax(); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("winnerLevel", array[i]);
+                }
+
+                return array;
+            }
+
+            public static String [] winnerDonations() throws FileNotFoundException {
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerDonations.txt", arrayMax(), "$", "");
+
+                for(i = 0; i < arrayMax(); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("winnerDonation", array[i]);
+                }
+
+                return array;
+            }
+
+            public static String [] winnerKms() throws FileNotFoundException {
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerKms.txt", arrayMax(), "", "kms");
+
+                for(i = 0; i < arrayMax(); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("winnerKms", array[i]);
+                }
+
+                return array;
+            }
+
+            public static String [] winnerTeachers() throws FileNotFoundException {
+                array = Vitals.Operations.TxtToArray(txtFilePath+"winnerTeachers.txt", arrayMax(), true);
+
+                for(i = 0; i < arrayMax(); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("winnerTeacher", array[i]);
+                }
+
+                return array;
+            }
+
         }
     }
 
@@ -563,6 +695,7 @@ class JavaHTMLDataAutomation {
         public static final String HTMLFilePath =
                 "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\HTMLFiles";
 
+        // class for organizing all processes required for any Winners by Kms files/data
         public static class WinnersByKms {
 
             public static String winnerCategory = "\\WinnersByKms\\"; // Winners for Kms travelled
@@ -583,9 +716,11 @@ class JavaHTMLDataAutomation {
                 System.out.println("participantKms"+winnerCategory+".html in WalkForWenjack.project competed\n");
             }
         }
+
+        // class for organizing all processes required for any Winners by Donations files/data
         public static class WinnersByDonations{
 
-            public static String  winnerCategory = "\\WinnersByDonations\\"; // Winners for Donations raised
+            public static String winnerCategory = "\\WinnersByDonations\\"; // Winners for Donations raised
 
             public static void classroom() throws IOException {
                 finalCode = Vitals.Operations.HTML(DataPackages.ClassData.arrayMax(winnerCategory), DataPackages.ClassData.classTeachers(winnerCategory),
@@ -604,8 +739,18 @@ class JavaHTMLDataAutomation {
             }
 
         }
+
+        public static void Winners() throws IOException {
+
+            finalCode = Vitals.Operations.HTML(DataPackages.WinnerData.arrayMax(), DataPackages.WinnerData.winnerTeachers(),
+                    DataPackages.WinnerData.winnerDonations(), DataPackages.WinnerData.winnerLevel(), DataPackages.WinnerData.winnerNames(),
+                    DataPackages.WinnerData.winnerKms(), HTMLConstants.WinnerIndexHeader, HTMLConstants.DefaultFooter);
+            Vitals.Operations.Writer(finalCode, HTMLFilePath+"index.html");
+            System.out.println("index.html in WalkForWenjack.project competed\n");
+
+        }
     }
 
     // public static void main(String [] args)? If(you.dontKnow(this)) {you.dontknow(Java);}
-    public static void main(String [] args) throws IOException { Vitals.Initiate(); }
+    public static void main(String [] args) throws IOException { Vitals.Execute(); }
 }
