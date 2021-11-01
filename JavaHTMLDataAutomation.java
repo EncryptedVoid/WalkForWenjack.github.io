@@ -1,268 +1,300 @@
+// All imports required for this build/project
 import java.io.*;
 import java.util.Scanner;
 import java.lang.StringBuilder;
 
-class TxtToHTML {
+// Main class
+class JavaHTMLDataAutomation {
 
-    // Universal int var for For loops
+    // Universal int var. for For loops
     public static int i = 0;
 
-    // How long the Arrays should be based on the length of the English.txt File:
-    public static int maxArrayCalc(String fileName) throws FileNotFoundException {
+    // Class for organizing all essential process and dividing them into formatting processes or generic ones
+    public static class Essentials {
 
-        int fileLength = 0;
-        File file = new File(fileName);
-        Scanner scanner = new Scanner(file);
+        // Class for organizing all process involved in data formatting
+        public static class Formatting {
 
-        while(scanner.hasNextLine()) {
-            scanner.nextLine();
-            fileLength++;
+            // Method for properly capitalizing names
+            public static String Capitalization(String name) {
+                StringBuilder capitalizedString = new StringBuilder();
+
+                name = name + " "; // Added space for negating error
+
+                for(i = 0; i < name.length()-1; i++) { // For loop to capitalize name in NameArray
+                    if(i == 0) {
+                        capitalizedString.append((name.charAt(i)+"").toUpperCase());
+                    } else if((name.charAt(i)+"").equals("-") || (name.charAt(i)+"").equals(" ")) {
+                        capitalizedString.append(name.charAt(i));
+                        i++;
+                        capitalizedString.append((name.charAt(i)+"").toUpperCase());
+
+                        // If at space or hyphen, one can assume next letter must be capitalized
+                    } else {
+                        capitalizedString.append((name.charAt(i)+"").toLowerCase());
+                    }
+                }
+                return capitalizedString.toString();
+            }
+
+            // Method for formatting individual table data
+            public static String DataToTableData(String dataName, String arrayData) {
+                return "<td id="+dataName+">"+arrayData+"</td>";
+            }
+
         }
 
-        scanner.close();
-        return fileLength;
+        // Class for organizing all process involved in actions
+        public static class Processes {
+
+            // How long the Arrays should be based on the length of the English.txt File:
+            public static int ArrayMaxCalc(String fileName) throws FileNotFoundException {
+
+                int fileLength = 0;
+                File file = new File(fileName);
+                Scanner scanner = new Scanner(file);
+
+                while(scanner.hasNextLine()) {
+                    scanner.nextLine();
+                    fileLength++;
+                }
+
+                scanner.close();
+                return fileLength;
+
+            }
+
+            // Method to initialize all .txt files into Arrays:
+            public static String[] TxtToArray(String fileName, int txtFileLength, boolean isName) throws FileNotFoundException {
+
+                File file = new File(fileName);
+                Scanner scanner = new Scanner(file);
+                String [] array = new String[txtFileLength];
+
+                for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
+                    if(isName){
+                        array[txtFileLength] = Essentials.Formatting.Capitalization(scanner.nextLine());
+                    } else {
+                        array[txtFileLength] = scanner.nextLine();
+                    }
+                }
+
+                scanner.close();
+
+                return array;
+
+            }
+
+            // Method to initialize all .txt files into Arrays:
+            public static String[] FormattedTxtToArray(String fileName, int txtFileLength, String unitFirst, String unitLast) throws FileNotFoundException {
+
+                File file = new File(fileName);
+                Scanner scanner = new Scanner(file);
+                String [] array = new String[txtFileLength];
+
+                for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
+                    array[txtFileLength] = unitFirst+ scanner.nextLine() +unitLast;
+                }
+
+                scanner.close();
+
+                return array;
+
+            }
+
+            // Method for writing to any file and used to write to .html files and .txt files based on the spreadsheet
+            public static void Writer(String material, String HTMLFileName) throws IOException {
+                File thisFile = new File(HTMLFileName);
+                BufferedWriter GoergeOrwell = new BufferedWriter(new FileWriter(thisFile));
+                GoergeOrwell.write(material);
+                GoergeOrwell.close();
+            }
+
+            // Method for formatting all arrays and strings into a singular output
+            public static String HTML(int arrayLength, String [] category1Data, String [] category2Data, String [] category3Data,
+                                      String [] category4Data, String [] category5Data, String HTMLStarter, String HTMLEnder) {
+
+                StringBuilder HTMLcode = new StringBuilder();
+
+                HTMLcode.append(HTMLStarter);
+
+                HTMLcode.append("\t").append("<tbody>").append("\n")
+                        .append("\t").append("\t").append("<tr>").append("\n");
+
+                for(i = 0; i < arrayLength; i++) {
+
+                    i++; String rank = Integer.toString(i); i--;
+
+                    if(i == 0) {
+                        HTMLcode.append("\t").append("\t").append("\t");
+                    } else {
+                        HTMLcode.append("\n").append("\t").append("\t").append("\t");
+                    }
+
+                    HTMLcode.append(Essentials.Formatting.DataToTableData("ranks", rank)).append("\n")
+                            .append("\t").append("\t").append("\t").append(category1Data[i]).append("\n")
+                            .append("\t").append("\t").append("\t").append(category3Data[i]).append("\n")
+                            .append("\t").append("\t").append("\t").append(category4Data[i]).append("\n")
+                            .append("\t").append("\t").append("\t").append(category5Data[i]).append("\n")
+                            .append("\t").append("\t").append("\t").append(category2Data[i]).append("\n")
+                            .append("\t").append("\t").append("</tr>").append("\n");
+
+                    // For starting a new row in the HTML table
+                    if(i == arrayLength-1) {
+                        HTMLcode.append("");
+                    } else {
+                        HTMLcode.append("\t").append("\t").append("<tr>");
+                    }
+
+                }
+
+                HTMLcode.append("\t").append("</tbody>");
+
+                HTMLcode.append(HTMLEnder);
+
+                return HTMLcode.toString();
+
+            }
+        }
+
+        // Void for holding all initiation of process into main(String [] args)
+        public static void Initiate() throws IOException {
+
+            Speech.start();
+
+            Coding.WinnersByKms.classroom();
+            Coding.WinnersByDonations.classroom();
+
+            Coding.WinnersByKms.participants();
+            Coding.WinnersByDonations.participant();
+
+            Speech.end();
+
+        }
 
     }
 
-    // Method for properly capitalizing names
-    public static String capitalizeString(String name) {
-        StringBuilder capitalizedString = new StringBuilder();
+    // Class for organizing all data
+    public static class DataPack {
+        // Class for all Classroom data (CD) values
+        public static class ClassData {
 
-        name = name + " "; // Added space for negating error
+            // Setting file path String for any of the required files so as to shorten the String given as the argument
+            public static final String txtFilePath =
+                    "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\ClassroomData";
 
-        for(i = 0; i < name.length()-1; i++) { // For loop to capitalize name in NameArray
-            if(i == 0) {
-                capitalizedString.append((name.charAt(i)+"").toUpperCase());
-            } else if((name.charAt(i)+"").equals("-") || (name.charAt(i)+"").equals(" ")) {
-                capitalizedString.append(name.charAt(i));
-                i++;
-                capitalizedString.append((name.charAt(i)+"").toUpperCase());
-
-                // If at space or hyphen, one can assume next letter must be capitalized
-            } else {
-                capitalizedString.append((name.charAt(i)+"").toLowerCase());
-            }
-        }
-        return capitalizedString.toString();
-    }
-
-    // Method to initialize all .txt files into Arrays:
-    public static String[] TxtToArray(String fileName, int txtFileLength, boolean isName) throws FileNotFoundException {
-
-        File file = new File(fileName);
-        Scanner scanner = new Scanner(file);
-        String [] array = new String[txtFileLength];
-
-        for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
-            if(isName){
-                array[txtFileLength] = capitalizeString(scanner.nextLine());
-            } else {
-                array[txtFileLength] = scanner.nextLine();
-            }
-        }
-
-        scanner.close();
-
-        return array;
-
-    }
-
-    // Method to initialize all .txt files into Arrays:
-    public static String[] FormattedTxtToArray(String fileName, int txtFileLength, String unitFirst, String unitLast) throws FileNotFoundException {
-
-        File file = new File(fileName);
-        Scanner scanner = new Scanner(file);
-        String [] array = new String[txtFileLength];
-
-        for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
-            array[txtFileLength] = unitFirst+ scanner.nextLine() +unitLast;
-        }
-
-        scanner.close();
-
-        return array;
-
-    }
-
-    // Method for formatting individual table data
-    public static String tableDataFormatted(String dataName, String arrayData) {
-
-        return "<td id="+dataName+">"+arrayData+"</td>";
-
-    }
-
-    // Method for writing to any file and used to write to .html files and .txt files based on the spreadsheet
-    public static void Writer(String material, String HTMLFileName) throws IOException {
-        File thisFile = new File(HTMLFileName);
-        BufferedWriter GoergeOrwell = new BufferedWriter(new FileWriter(thisFile));
-        GoergeOrwell.write(material);
-        GoergeOrwell.close();
-    }
-
-    // Method for formatting all arrays and strings into a singular output
-    public static String HTMLCode(int arrayLength, String [] category1Data, String [] category2Data, String [] category3Data,
-            String [] category4Data, String [] category5Data, String HTMLStarter, String HTMLEnder) {
-
-        StringBuilder HTMLcode = new StringBuilder();
-
-        HTMLcode.append(HTMLStarter);
-
-        HTMLcode.append("\t").append("<tbody>").append("\n")
-                .append("\t").append("\t").append("<tr>").append("\n");
-
-        for(i = 0; i < arrayLength; i++) {
-
-            i++; String rank = Integer.toString(i); i--;
-
-            if(i == 0) {
-                HTMLcode.append("\t").append("\t").append("\t");
-            } else {
-                HTMLcode.append("\n").append("\t").append("\t").append("\t");
+            // Setting arrayMax int for setting size for arrays & using Try/Catch if missing files
+            public static int arrayMax(String winnerCategory) throws FileNotFoundException {
+                return Essentials.Processes.ArrayMaxCalc(txtFilePath+winnerCategory+"classTeachers.txt");
             }
 
-            HTMLcode.append(tableDataFormatted("ranks", rank)).append("\n")
-                    .append("\t").append("\t").append("\t").append(category1Data[i]).append("\n")
-                    .append("\t").append("\t").append("\t").append(category3Data[i]).append("\n")
-                    .append("\t").append("\t").append("\t").append(category4Data[i]).append("\n")
-                    .append("\t").append("\t").append("\t").append(category5Data[i]).append("\n")
-                    .append("\t").append("\t").append("\t").append(category2Data[i]).append("\n")
-                    .append("\t").append("\t").append("</tr>").append("\n");
+            static String [] array = null;
 
-            // For starting a new row in the HTML table
-            if(i == arrayLength-1) {
-                HTMLcode.append("");
-            } else {
-                HTMLcode.append("\t").append("\t").append("<tr>");
+            public static String [] classCodes(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.TxtToArray(txtFilePath+winnerCategory+"classCodes.txt", arrayMax(winnerCategory), false);
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("classCode", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] classGrades(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"classGrades.txt", arrayMax(winnerCategory), "Grade ", "");
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("classGrade", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] classDonations(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"classDonations.txt", arrayMax(winnerCategory), "$", "");
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("classDonation", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] classKms(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"classKms.txt", arrayMax(winnerCategory), "", "kms");
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("classKms", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] classTeachers(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.TxtToArray(txtFilePath+winnerCategory+"classTeachers.txt", arrayMax(winnerCategory), true);
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("classTeachers", array[i]);
+                }
+
+                return array;
+            }
+        }
+
+        // Class for all Participant data (PD) values
+        public static class ParticipantData {
+
+            // Setting file path String for any of the required files so as to shorten the String given as the argument
+            public static final String txtFilePath =
+                    "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\ParticipantData";
+
+            static String [] array = null;
+
+            public static int arrayMax(String winnerCategory) throws FileNotFoundException {
+                return Essentials.Processes.ArrayMaxCalc(txtFilePath+winnerCategory+"participantNames.txt");
             }
 
-        }
+            public static String [] participantNames(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.TxtToArray(txtFilePath+winnerCategory+"participantNames.txt", arrayMax(winnerCategory), true);
 
-        HTMLcode.append("\t").append("</tbody>");
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("participantName", array[i]);
+                }
 
-        HTMLcode.append(HTMLEnder);
-
-        return HTMLcode.toString();
-
-    }
-
-    // Class for all Classroom data (CD) values
-    public static class CD {
-
-        // Setting file path String for any of the required files so as to shorten the String given as the argument
-        public static final String txtFilePath =
-                "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\ClassroomData";
-
-        // Setting arrayMax int for setting size for arrays & using Try/Catch if missing files
-        public static int arrayMax(String winnerCategory) throws FileNotFoundException {
-            return maxArrayCalc(txtFilePath+winnerCategory+"classTeachers.txt");
-        }
-
-        static String [] array = null;
-
-        public static String [] classCodes(String winnerCategory) throws FileNotFoundException {
-            array = TxtToArray(txtFilePath+winnerCategory+"classCodes.txt", arrayMax(winnerCategory), false);
-
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("classCode", array[i]);
+                return array;
             }
+            public static String [] participantGrades(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"participantGrades.txt", arrayMax(winnerCategory), "Grade ", "");
 
-            return array;
-        }
-        public static String [] classGrades(String winnerCategory) throws FileNotFoundException {
-            array = FormattedTxtToArray(txtFilePath+winnerCategory+"classGrades.txt", arrayMax(winnerCategory), "Grade ", "");
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("participantGrade", array[i]);
+                }
 
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("classGrade", array[i]);
+                return array;
             }
+            public static String [] participantDonations(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"participantDonations.txt", arrayMax(winnerCategory), "$", "");
 
-            return array;
-        }
-        public static String [] classDonations(String winnerCategory) throws FileNotFoundException {
-            array = FormattedTxtToArray(txtFilePath+winnerCategory+"classDonations.txt", arrayMax(winnerCategory), "$ ", "");
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("participantDonation", array[i]);
+                }
 
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("classDonation", array[i]);
+                return array;
             }
+            public static String [] participantKms(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"participantKms.txt", arrayMax(winnerCategory), "", "kms");
 
-            return array;
-        }
-        public static String [] classKms(String winnerCategory) throws FileNotFoundException {
-            array = FormattedTxtToArray(txtFilePath+winnerCategory+"classKms.txt", arrayMax(winnerCategory), "", "kms");
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("participantKms", array[i]);
+                }
 
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("classKms", array[i]);
+                return array;
             }
+            public static String [] participantTeachers(String winnerCategory) throws FileNotFoundException {
+                array = Essentials.Processes.TxtToArray(txtFilePath+winnerCategory+"participantTeachers.txt", arrayMax(winnerCategory), true);
 
-            return array;
-        }
-        public static String [] classTeachers(String winnerCategory) throws FileNotFoundException {
-            array = TxtToArray(txtFilePath+winnerCategory+"classTeachers.txt", arrayMax(winnerCategory), true);
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Essentials.Formatting.DataToTableData("participantTeacher", array[i]);
+                }
 
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("classTeachers", array[i]);
+                return array;
             }
-
-            return array;
-        }
-    }
-
-    // Class for all Participant data (PD) values
-    public static class PD {
-
-        // Setting file path String for any of the required files so as to shorten the String given as the argument
-        public static final String txtFilePath =
-                "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\ParticipantData";
-
-        static String [] array = null;
-
-        public static int arrayMax(String winnerCategory) throws FileNotFoundException {
-            return maxArrayCalc(txtFilePath+winnerCategory+"participantNames.txt");
-        }
-
-        public static String [] participantNames(String winnerCategory) throws FileNotFoundException {
-            array = TxtToArray(txtFilePath+winnerCategory+"participantNames.txt", arrayMax(winnerCategory), true);
-
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("participantName", array[i]);
-            }
-
-            return array;
-        }
-        public static String [] participantGrades(String winnerCategory) throws FileNotFoundException {
-            array = FormattedTxtToArray(txtFilePath+winnerCategory+"participantGrades.txt", arrayMax(winnerCategory), "Grade ", "");
-
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("participantGrade", array[i]);
-            }
-
-            return array;
-        }
-        public static String [] participantDonations(String winnerCategory) throws FileNotFoundException {
-            array = FormattedTxtToArray(txtFilePath+winnerCategory+"participantDonations.txt", arrayMax(winnerCategory), "$ ", "");
-
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("participantDonation", array[i]);
-            }
-
-            return array;
-        }
-        public static String [] participantKms(String winnerCategory) throws FileNotFoundException {
-            array = FormattedTxtToArray(txtFilePath+winnerCategory+"participantKms.txt", arrayMax(winnerCategory), "", "kms");
-
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("participantKms", array[i]);
-            }
-
-            return array;
-        }
-        public static String [] participantTeachers(String winnerCategory) throws FileNotFoundException {
-            array = TxtToArray(txtFilePath+winnerCategory+"participantTeachers.txt", arrayMax(winnerCategory), true);
-
-            for(i = 0; i < arrayMax(winnerCategory); i++) {
-                array[i] = tableDataFormatted("participantTeacher", array[i]);
-            }
-
-            return array;
         }
     }
 
@@ -495,26 +527,29 @@ class TxtToHTML {
     // Class for organizing all process for Reading txt files & Writing to HTML files
     public static class Coding {
 
+        public static String finalCode;
+
         // Setting file path String for any of the required files so as to shorten the String given as the argument
         public static final String HTMLFilePath =
                 "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\HTMLFiles";
 
-        public static String finalCode;
-
         public static class WinnersByKms {
+
             public static String winnerCategory = "\\WinnersByKms\\"; // Winners for Kms travelled
 
             public static void classroom() throws IOException {
-                finalCode = HTMLCode(CD.arrayMax(winnerCategory), CD.classTeachers(winnerCategory), CD.classDonations(winnerCategory), CD.classCodes(winnerCategory),
-                        CD.classGrades(winnerCategory), CD.classKms(winnerCategory), HTMLConstants.ClassKmsStart, HTMLConstants.End);
-                Writer(finalCode, HTMLFilePath+"classroomKms.html");
+                finalCode = Essentials.Processes.HTML(DataPack.ClassData.arrayMax(winnerCategory), DataPack.ClassData.classTeachers(winnerCategory),
+                        DataPack.ClassData.classDonations(winnerCategory), DataPack.ClassData.classCodes(winnerCategory), DataPack.ClassData.classGrades(winnerCategory),
+                        DataPack.ClassData.classKms(winnerCategory), HTMLConstants.ClassKmsStart, HTMLConstants.End);
+                Essentials.Processes.Writer(finalCode, HTMLFilePath+"classroomKms.html");
                 System.out.println("classroomKms"+winnerCategory+".html in WalkForWenjack.project competed\n");
             }
             public static void participants() throws IOException {
-                finalCode = HTMLCode(PD.arrayMax(winnerCategory), PD.participantTeachers(winnerCategory), PD.participantDonations(winnerCategory),
-                        PD.participantNames(winnerCategory), PD.participantGrades(winnerCategory), PD.participantKms(winnerCategory),
+                finalCode = Essentials.Processes.HTML(DataPack.ParticipantData.arrayMax(winnerCategory), DataPack.ParticipantData.participantTeachers(winnerCategory),
+                        DataPack.ParticipantData.participantDonations(winnerCategory), DataPack.ParticipantData.participantNames(winnerCategory),
+                        DataPack.ParticipantData.participantGrades(winnerCategory), DataPack.ParticipantData.participantKms(winnerCategory),
                         HTMLConstants.ParticipantKmsStart, HTMLConstants.End);
-                Writer(finalCode, HTMLFilePath+"participantKms.html");
+                Essentials.Processes.Writer(finalCode, HTMLFilePath+"participantKms.html");
                 System.out.println("participantKms"+winnerCategory+".html in WalkForWenjack.project competed\n");
             }
         }
@@ -523,16 +558,18 @@ class TxtToHTML {
             public static String  winnerCategory = "\\WinnersByDonations\\"; // Winners for Donations raised
 
             public static void classroom() throws IOException {
-                finalCode = HTMLCode(CD.arrayMax(winnerCategory), CD.classTeachers(winnerCategory), CD.classDonations(winnerCategory), CD.classCodes(winnerCategory),
-                        CD.classGrades(winnerCategory), CD.classKms(winnerCategory), HTMLConstants.ClassDonationsStart, HTMLConstants.End);
-                Writer(finalCode, HTMLFilePath+"classroomDonations.html");
+                finalCode = Essentials.Processes.HTML(DataPack.ClassData.arrayMax(winnerCategory), DataPack.ClassData.classTeachers(winnerCategory),
+                        DataPack.ClassData.classDonations(winnerCategory), DataPack.ClassData.classCodes(winnerCategory), DataPack.ClassData.classGrades(winnerCategory),
+                        DataPack.ClassData.classKms(winnerCategory), HTMLConstants.ClassDonationsStart, HTMLConstants.End);
+                Essentials.Processes.Writer(finalCode, HTMLFilePath+"classroomDonations.html");
                 System.out.println("classroomDonations"+winnerCategory+".html in WalkForWenjack.project competed\n");
             }
             public static void participant() throws IOException {
-                finalCode = HTMLCode(PD.arrayMax(winnerCategory), PD.participantTeachers(winnerCategory), PD.participantDonations(winnerCategory),
-                        PD.participantNames(winnerCategory), PD.participantGrades(winnerCategory), PD.participantKms(winnerCategory),
+                finalCode = Essentials.Processes.HTML(DataPack.ParticipantData.arrayMax(winnerCategory), DataPack.ParticipantData.participantTeachers(winnerCategory),
+                        DataPack.ParticipantData.participantDonations(winnerCategory), DataPack.ParticipantData.participantNames(winnerCategory),
+                        DataPack.ParticipantData.participantGrades(winnerCategory), DataPack.ParticipantData.participantKms(winnerCategory),
                         HTMLConstants.ParticipantDonationsStart, HTMLConstants.End);
-                Writer(finalCode, HTMLFilePath+"participantDonations.html");
+                Essentials.Processes.Writer(finalCode, HTMLFilePath+"participantDonations.html");
                 System.out.println("participantDonations"+winnerCategory+".html in WalkForWenjack.project competed\n");
             }
 
@@ -553,17 +590,6 @@ class TxtToHTML {
         }
     }
 
-    public static void main(String [] args) throws IOException {
-
-        Speech.start();
-
-        Coding.WinnersByKms.classroom();
-        Coding.WinnersByDonations.classroom();
-
-        Coding.WinnersByKms.participants();
-        Coding.WinnersByDonations.participant();
-
-        Speech.end();
-
-    }
+    // public static void main(String [] args)? If(you.dontKnow(this)) {you.dontknow(Java);}
+    public static void main(String [] args) throws IOException { Essentials.Initiate(); }
 }

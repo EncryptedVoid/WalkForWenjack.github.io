@@ -4,17 +4,18 @@ Ms. Abma
 Mme. Dugal
 Mr. Meservia
 Ms. Miller
+Ms. Robin
 Mme. Lamoureux
 Mr. Meservia
 Ms. Robin
 Ms. Harman
 Mme. Napoleon
 Ms.Donaghy
+Ms. Brown
 Ms. Fabbro
 Ms. Jones
 Mr. Cleveland
 Ms. Robin
-Ms. Brown
 Ms. Gupta
 Mr. MacDougall
 Ms.Donaghy
@@ -22,14 +23,12 @@ Ms. Dewar
 Ms. Robin
 Ms. Jones
 Ms. MacDougall
-Ms. MacDougall
 Ms. Abma
 Ms. Farquhar
 Mme. Lamoureux
 Mr. Meservia
 Ms. Farquhar
 Mrs. A Hiemstra
-Ms. Robin
 Ms. Robin
 Ms. Robin
 Mr. Puige
@@ -53,7 +52,7 @@ Ms. Robin
 Mr. C Hiemstra
 Mme. Lamoureux
 Mme. Lamoureux
-Mme. Napoleon 
+Mme. Napoleon
 Spare
 Ms. Abma
 Ms. Dewar

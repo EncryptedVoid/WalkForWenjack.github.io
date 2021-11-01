@@ -1,10 +1,10 @@
 Ms. Robin
 Mme. Lamoureux
-Ms. Robin
 Ms. Miller
 Ms. Robin
 Mme. Dugal
 Ms. Trumpower
+Ms. Robin
 Ms. Jones
 Ms. Robin
 Ms. Dewar
@@ -44,11 +44,10 @@ Mr. Cleveland
 Ms. Robin
 Mr. C Hiemstra
 Ms. MacDougall
-Ms. MacDougall
 Mme. Lamoureux
 Mme. Lamoureux
 Ms. Abma
-Mme. Napoleon 
+Mme. Napoleon
 Ms. Fabbro
 Mr. Meservia
 Spare
