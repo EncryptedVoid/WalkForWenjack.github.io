@@ -242,6 +242,7 @@ class JavaHTMLDataAutomation {
                         </div>
 
                         <div id="buttonDiv">
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="index.html">WINNER LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
                         </div>
@@ -290,6 +291,7 @@ class JavaHTMLDataAutomation {
                         </div>
 
                         <div id="buttonDiv">
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="index.html">WINNER LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
                         </div>
@@ -342,6 +344,7 @@ class JavaHTMLDataAutomation {
                         </div>
                                 
                         <div id="buttonDiv">
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="index.html">WINNER LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
                         </div>
@@ -394,6 +397,7 @@ class JavaHTMLDataAutomation {
                         </div>
 
                         <div id="buttonDiv">
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="index.html">WINNER LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
                         </div>
@@ -446,6 +450,7 @@ class JavaHTMLDataAutomation {
                         </div>
                                 
                         <div id="buttonDiv">
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="index.html">WINNER LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
                         </div>
