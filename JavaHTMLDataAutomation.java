@@ -110,19 +110,19 @@ class JavaHTMLDataAutomation {
             }
 
             // Method to initialize all .txt files into Arrays:
-            public static String[] FormattedTxtToArray(String fileName, int txtFileLength, String unitFirst, String unitLast) throws FileNotFoundException {
+            public static String[] FormattedTxtToArray(String fileName, int txtFileLength, String unitFirst, String unitLast, String unchangedDataValue) throws FileNotFoundException {
 
                 File file = new File(fileName);
                 Scanner scanner = new Scanner(file);
                 String [] array = new String[txtFileLength];
 
                 for(i=0; i<txtFileLength;i++){
-                    if(i++ != txtFileLength-1) {
-                        if(scanner.nextLine().equals("CW Staff")) {
-                            unitFirst = ""; unitLast = "";
-                        }
-                        array[i] = unitFirst+scanner.nextLine()+unitLast;
+                    array[i] = unitFirst+scanner.nextLine()+unitLast;
+
+                    if(array[i].equals(unitFirst+unchangedDataValue+unitLast)) {
+                        array[i] = unchangedDataValue;
                     }
+
                 }
 
                 scanner.close();
@@ -522,7 +522,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] totalStudents(String winnerCategory) throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"totalStudents.txt", arrayMax(winnerCategory), "Grade ", "");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"totalStudents.txt", arrayMax(winnerCategory), "Grade ", "", "CW Staff");
 
                 for(i = 0; i < arrayMax(winnerCategory); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("classSize", array[i]);
@@ -532,7 +532,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] classDonations(String winnerCategory) throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"classDonations.txt", arrayMax(winnerCategory), "$", "");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"classDonations.txt", arrayMax(winnerCategory), "$", "", "CW Staff");
 
                 // ClassAverageCalc(int classSize, byte preferredDecimalPlace, int dataValue)
                 for(i = 0; i < arrayMax(winnerCategory); i++) {
@@ -543,7 +543,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] classKms(String winnerCategory) throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"classKms.txt", arrayMax(winnerCategory), "", "kms");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"classKms.txt", arrayMax(winnerCategory), "", "kms", "CW Staff");
 
                 // ClassAverageCalc(int classSize, byte preferredDecimalPlace, int dataValue)
                 for(i = 0; i < arrayMax(winnerCategory); i++) {
@@ -589,7 +589,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] participantGrades(String winnerCategory) throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantGrades.txt", arrayMax(winnerCategory), "Grade ", "");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantGrades.txt", arrayMax(winnerCategory), "Grade ", "", "CW Staff");
 
                 for(i = 0; i < arrayMax(winnerCategory); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("participantGrade", array[i]);
@@ -599,7 +599,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] participantDonations(String winnerCategory) throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantDonations.txt", arrayMax(winnerCategory), "$", "");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantDonations.txt", arrayMax(winnerCategory), "$", "", "CW Staff");
 
                 for(i = 0; i < arrayMax(winnerCategory); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("participantDonation", array[i]);
@@ -609,7 +609,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] participantKms(String winnerCategory) throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantKms.txt", arrayMax(winnerCategory), "", "kms");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantKms.txt", arrayMax(winnerCategory), "", "kms", "CW Staff");
 
                 for(i = 0; i < arrayMax(winnerCategory); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("participantKms", array[i]);
@@ -654,7 +654,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] winnerLevel() throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerLevel.txt", arrayMax(), "Grade ", "");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerLevel.txt", arrayMax(), "Grade ", "", "CW Staff");
 
                 for(i = 0; i < arrayMax(); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("winnerLevel", array[i]);
@@ -664,7 +664,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] winnerDonations() throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerDonations.txt", arrayMax(), "$", "");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerDonations.txt", arrayMax(), "$", "", "CW Staff");
 
                 for(i = 0; i < arrayMax(); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("winnerDonation", array[i]);
@@ -674,7 +674,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] winnerKms() throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerKms.txt", arrayMax(), "", "kms");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerKms.txt", arrayMax(), "", "kms", "CW Staff");
 
                 for(i = 0; i < arrayMax(); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("winnerKms", array[i]);
