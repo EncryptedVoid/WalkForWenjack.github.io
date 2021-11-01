@@ -237,6 +237,7 @@ class JavaHTMLDataAutomation {
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
                                 """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""
+                                
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
@@ -286,6 +287,7 @@ class JavaHTMLDataAutomation {
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
                                 """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""
+                                
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
@@ -339,6 +341,7 @@ class JavaHTMLDataAutomation {
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
                                 """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""
+                                
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
@@ -391,7 +394,8 @@ class JavaHTMLDataAutomation {
 
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
-                                """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""                                
+                                """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""    
+                                                            
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
@@ -444,7 +448,8 @@ class JavaHTMLDataAutomation {
                                 
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
-                                """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""                                
+                                """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""  
+                                                              
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
