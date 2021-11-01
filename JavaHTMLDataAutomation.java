@@ -9,11 +9,25 @@ class JavaHTMLDataAutomation {
     // Universal int var. for For loops
     public static int i = 0;
 
+    // Class for organizing all speech that should be outputted in console during compilation till the end
+    public static class Speech {
+        public static void start() {
+            System.out.println("Initiating WalkForWenjack.project...\n");
+            System.out.println("Retrieving all assets for WalkForWenjack.project...\n");
+            System.out.println("Beginning system process for WalkForWenjack.project...\n");
+        }
+        public static void end() {
+            System.out.println("WalkForWenjack.project completed\n");
+            System.out.println("Do not forget to push all files onto Git Repository to update Github Pages\n");
+            System.out.println("Have a great day\n");
+        }
+    }
+
     // Class for organizing all essential process and dividing them into formatting processes or generic ones
-    public static class Essentials {
+    public static class Vitals {
 
         // Class for organizing all process involved in data formatting
-        public static class Formatting {
+        public static class DataConfiguration {
 
             // Method for properly capitalizing names
             public static String Capitalization(String name) {
@@ -42,10 +56,20 @@ class JavaHTMLDataAutomation {
                 return "<td id="+dataName+">"+arrayData+"</td>";
             }
 
+            // For rounding numbers to the nearest decimal place given
+            public static int Round(int preferredDecimalPlace, int dataValue) {
+                return Math.round((dataValue*preferredDecimalPlace))/preferredDecimalPlace;
+            }
+
+            // For converting array data values to averaged data values
+            public static String ClassAverageCalc(int dataCensusSize, int preferredDecimalPlace, int dataValue) {
+                return Integer.toString(Round(preferredDecimalPlace, (dataValue/dataCensusSize)));
+            }
+
         }
 
         // Class for organizing all process involved in actions
-        public static class Processes {
+        public static class Operations {
 
             // How long the Arrays should be based on the length of the English.txt File:
             public static int ArrayMaxCalc(String fileName) throws FileNotFoundException {
@@ -73,7 +97,7 @@ class JavaHTMLDataAutomation {
 
                 for(txtFileLength=0; txtFileLength<array.length;txtFileLength++){
                     if(isName){
-                        array[txtFileLength] = Essentials.Formatting.Capitalization(scanner.nextLine());
+                        array[txtFileLength] = DataConfiguration.Capitalization(scanner.nextLine());
                     } else {
                         array[txtFileLength] = scanner.nextLine();
                     }
@@ -131,7 +155,7 @@ class JavaHTMLDataAutomation {
                         HTMLcode.append("\n").append("\t").append("\t").append("\t");
                     }
 
-                    HTMLcode.append(Essentials.Formatting.DataToTableData("ranks", rank)).append("\n")
+                    HTMLcode.append(DataConfiguration.DataToTableData("ranks", rank)).append("\n")
                             .append("\t").append("\t").append("\t").append(category1Data[i]).append("\n")
                             .append("\t").append("\t").append("\t").append(category3Data[i]).append("\n")
                             .append("\t").append("\t").append("\t").append(category4Data[i]).append("\n")
@@ -160,151 +184,31 @@ class JavaHTMLDataAutomation {
         // Void for holding all initiation of process into main(String [] args)
         public static void Initiate() throws IOException {
 
+            // For adding dialogue to the console
             Speech.start();
 
+            // For completing/Updating the classroom data statuses
             Coding.WinnersByKms.classroom();
             Coding.WinnersByDonations.classroom();
 
+            // For completing/Updating the participant data statuses
             Coding.WinnersByKms.participants();
             Coding.WinnersByDonations.participant();
 
+            // For adding dialogue to the console
             Speech.end();
 
         }
 
     }
 
-    // Class for organizing all data
-    public static class DataPack {
-        // Class for all Classroom data (CD) values
-        public static class ClassData {
-
-            // Setting file path String for any of the required files so as to shorten the String given as the argument
-            public static final String txtFilePath =
-                    "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\ClassroomData";
-
-            // Setting arrayMax int for setting size for arrays & using Try/Catch if missing files
-            public static int arrayMax(String winnerCategory) throws FileNotFoundException {
-                return Essentials.Processes.ArrayMaxCalc(txtFilePath+winnerCategory+"classTeachers.txt");
-            }
-
-            static String [] array = null;
-
-            public static String [] classCodes(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.TxtToArray(txtFilePath+winnerCategory+"classCodes.txt", arrayMax(winnerCategory), false);
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("classCode", array[i]);
-                }
-
-                return array;
-            }
-            public static String [] classGrades(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"classGrades.txt", arrayMax(winnerCategory), "Grade ", "");
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("classGrade", array[i]);
-                }
-
-                return array;
-            }
-            public static String [] classDonations(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"classDonations.txt", arrayMax(winnerCategory), "$", "");
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("classDonation", array[i]);
-                }
-
-                return array;
-            }
-            public static String [] classKms(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"classKms.txt", arrayMax(winnerCategory), "", "kms");
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("classKms", array[i]);
-                }
-
-                return array;
-            }
-            public static String [] classTeachers(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.TxtToArray(txtFilePath+winnerCategory+"classTeachers.txt", arrayMax(winnerCategory), true);
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("classTeachers", array[i]);
-                }
-
-                return array;
-            }
-        }
-
-        // Class for all Participant data (PD) values
-        public static class ParticipantData {
-
-            // Setting file path String for any of the required files so as to shorten the String given as the argument
-            public static final String txtFilePath =
-                    "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\ParticipantData";
-
-            static String [] array = null;
-
-            public static int arrayMax(String winnerCategory) throws FileNotFoundException {
-                return Essentials.Processes.ArrayMaxCalc(txtFilePath+winnerCategory+"participantNames.txt");
-            }
-
-            public static String [] participantNames(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.TxtToArray(txtFilePath+winnerCategory+"participantNames.txt", arrayMax(winnerCategory), true);
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("participantName", array[i]);
-                }
-
-                return array;
-            }
-            public static String [] participantGrades(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"participantGrades.txt", arrayMax(winnerCategory), "Grade ", "");
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("participantGrade", array[i]);
-                }
-
-                return array;
-            }
-            public static String [] participantDonations(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"participantDonations.txt", arrayMax(winnerCategory), "$", "");
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("participantDonation", array[i]);
-                }
-
-                return array;
-            }
-            public static String [] participantKms(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.FormattedTxtToArray(txtFilePath+winnerCategory+"participantKms.txt", arrayMax(winnerCategory), "", "kms");
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("participantKms", array[i]);
-                }
-
-                return array;
-            }
-            public static String [] participantTeachers(String winnerCategory) throws FileNotFoundException {
-                array = Essentials.Processes.TxtToArray(txtFilePath+winnerCategory+"participantTeachers.txt", arrayMax(winnerCategory), true);
-
-                for(i = 0; i < arrayMax(winnerCategory); i++) {
-                    array[i] = Essentials.Formatting.DataToTableData("participantTeacher", array[i]);
-                }
-
-                return array;
-            }
-        }
-    }
-
     // Class for storing and "compressing"/organizing all HTML code constant for HTML pages
     public static final class HTMLConstants {
         public static String Time() {
-            return "Last Updated: " + java.util.Calendar.getInstance().getTime();
+            return "" + java.util.Calendar.getInstance().getTime() + "";
         }
 
-        public static final String ParticipantKmsStart = """
+        public static final String ParticipantKmsHeader = """
                 <!DOCTYPE html>
 
                 <html lang="en">
@@ -323,7 +227,7 @@ class JavaHTMLDataAutomation {
 
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
-                                """+"<tr><td id=\"localUpdateDate\"><i>"+Time()+"</i></td></tr>"+"""
+                                """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
@@ -356,7 +260,7 @@ class JavaHTMLDataAutomation {
                 
                 """;
 
-        public static final String ParticipantDonationsStart = """
+        public static final String ParticipantDonationsHeader = """
                 <!DOCTYPE html>
                                 
                 <html lang="en">
@@ -375,7 +279,7 @@ class JavaHTMLDataAutomation {
                                 
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
-                                """+"<tr><td id=\"localUpdateDate\"><i>"+Time()+"</i></td></tr>"+"""
+                                """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
@@ -408,7 +312,7 @@ class JavaHTMLDataAutomation {
                                 
                 """;
 
-        public static final String ClassKmsStart = """
+        public static final String ClassKmsHeader = """
                 <!DOCTYPE html>
 
                 <html lang="en">
@@ -427,13 +331,13 @@ class JavaHTMLDataAutomation {
 
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
-                                """+"<tr><td id=\"localUpdateDate\"><i>"+Time()+"</i></td></tr>"+"""                                
+                                """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""                                
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
 
                         <div id="buttonDiv">
-                            <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesclassroomKms.html">PARTICIPANT LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
                         </div>
 
@@ -450,17 +354,17 @@ class JavaHTMLDataAutomation {
                                 <thead>
                                     <tr>
                                         <th id="rank"></th>
-                                        <th class="leftText" id="homeroom">Homeroom:</th>
-                                        <th class="leftText" id="name">Participant Name:</th>
-                                        <th class="rightText" id="grade">Grade</th>
-                                        <th class="rightText" id="kms">Total Km(s)</th>
-                                        <th class="rightText" id="donation">$ raised:</th>
+                                        <th class="leftText" id="homeroom">Class Code:</th>
+                                        <th class="leftText" id="name">Class Teacher:</th>
+                                        <th class="rightText" id="grade">Class Size:</th>
+                                        <th class="rightText" id="kms">Average Kms:</th>
+                                        <th class="rightText" id="donation">Average Donations:</th>
                                     </tr>
                                 </thead>
                                 
                 """;
 
-        public static final String ClassDonationsStart = """
+        public static final String ClassDonationsHeader = """
                 <!DOCTYPE html>
                                 
                 <html lang="en">
@@ -479,13 +383,13 @@ class JavaHTMLDataAutomation {
                                 
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
-                                """+"<tr><td id=\"localUpdateDate\"><i>"+Time()+"</i></td></tr>"+"""                                
+                                """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""                                
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
                                 
                         <div id="buttonDiv">
-                            <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesparticipantKms.html">PARTICIPANT LEADERBOARD</a></button>
+                            <button class="glow-on-hover" type="button" id="participantButton"><a href="HTMLFilesclassroomKms.html">PARTICIPANT LEADERBOARD</a></button>
                             <button class="glow-on-hover" type="button" id="classroomLeaderboard"><a href="HTMLFilesclassroomKms.html">CLASSROOM LEADERBOARD</a></button>
                         </div>
                                 
@@ -502,17 +406,17 @@ class JavaHTMLDataAutomation {
                                 <thead>
                                     <tr>
                                         <th id="rank"></th>
-                                        <th class="leftText" id="homeroom">Homeroom:</th>
-                                        <th class="leftText" id="name">Participant Name:</th>
-                                        <th class="rightText" id="grade">Grade</th>
-                                        <th class="rightText" id="kms">Total Km(s)</th>
-                                        <th class="rightText" id="donation">$ raised:</th>
+                                        <th class="leftText" id="homeroom">Class Code:</th>
+                                        <th class="leftText" id="name">Class Teacher:</th>
+                                        <th class="rightText" id="grade">Class Size:</th>
+                                        <th class="rightText" id="kms">Average Kms:</th>
+                                        <th class="rightText" id="donation">Average Donations:</th>
                                     </tr>
                                 </thead>
                                 
                 """;
 
-        public static final String End = """
+        public static final String DefaultFooter = """
                 </table>
                         </div>
                                 
@@ -522,6 +426,132 @@ class JavaHTMLDataAutomation {
                     </body>
                 </html>
         """;
+    }
+
+    // Class for organizing all data
+    public static class DataPackages {
+        // Class for all Classroom data (CD) values
+        public static class ClassData {
+
+            // Setting file path String for any of the required files so as to shorten the String given as the argument
+            public static final String txtFilePath =
+                    "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\ClassroomData";
+
+            // Setting arrayMax int for setting size for arrays & using Try/Catch if missing files
+            public static int arrayMax(String winnerCategory) throws FileNotFoundException {
+                return Vitals.Operations.ArrayMaxCalc(txtFilePath+winnerCategory+"classTeachers.txt");
+            }
+
+            static String [] array = null;
+
+            public static String [] classCodes(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.TxtToArray(txtFilePath+winnerCategory+"classCodes.txt", arrayMax(winnerCategory), false);
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("classCode", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] totalStudents(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"totalStudents.txt", arrayMax(winnerCategory), "Grade ", "");
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("classSize", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] classDonations(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"classDonations.txt", arrayMax(winnerCategory), "$", "");
+
+                // ClassAverageCalc(int classSize, byte preferredDecimalPlace, int dataValue)
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("classDonationAvg", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] classKms(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"classKms.txt", arrayMax(winnerCategory), "", "kms");
+
+                // ClassAverageCalc(int classSize, byte preferredDecimalPlace, int dataValue)
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("classKmsAvg", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] classTeachers(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.TxtToArray(txtFilePath+winnerCategory+"classTeachers.txt", arrayMax(winnerCategory), true);
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("classTeachers", array[i]);
+                }
+
+                return array;
+            }
+        }
+
+        // Class for all Participant data (PD) values
+        public static class ParticipantData {
+
+            // Setting file path String for any of the required files so as to shorten the String given as the argument
+            public static final String txtFilePath =
+                    "C:\\Users\\ashiq\\OneDrive\\Desktop\\Git\\WalkForWenjack.github.io\\txtFiles\\ParticipantData";
+
+            static String [] array = null;
+
+            public static int arrayMax(String winnerCategory) throws FileNotFoundException {
+                return Vitals.Operations.ArrayMaxCalc(txtFilePath+winnerCategory+"participantNames.txt");
+            }
+
+            public static String [] participantNames(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.TxtToArray(txtFilePath+winnerCategory+"participantNames.txt", arrayMax(winnerCategory), true);
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("participantName", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] participantGrades(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantGrades.txt", arrayMax(winnerCategory), "Grade ", "");
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("participantGrade", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] participantDonations(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantDonations.txt", arrayMax(winnerCategory), "$", "");
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("participantDonation", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] participantKms(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+winnerCategory+"participantKms.txt", arrayMax(winnerCategory), "", "kms");
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("participantKms", array[i]);
+                }
+
+                return array;
+            }
+            public static String [] participantTeachers(String winnerCategory) throws FileNotFoundException {
+                array = Vitals.Operations.TxtToArray(txtFilePath+winnerCategory+"participantTeachers.txt", arrayMax(winnerCategory), true);
+
+                for(i = 0; i < arrayMax(winnerCategory); i++) {
+                    array[i] = Vitals.DataConfiguration.DataToTableData("participantTeacher", array[i]);
+                }
+
+                return array;
+            }
+        }
     }
 
     // Class for organizing all process for Reading txt files & Writing to HTML files
@@ -538,18 +568,18 @@ class JavaHTMLDataAutomation {
             public static String winnerCategory = "\\WinnersByKms\\"; // Winners for Kms travelled
 
             public static void classroom() throws IOException {
-                finalCode = Essentials.Processes.HTML(DataPack.ClassData.arrayMax(winnerCategory), DataPack.ClassData.classTeachers(winnerCategory),
-                        DataPack.ClassData.classDonations(winnerCategory), DataPack.ClassData.classCodes(winnerCategory), DataPack.ClassData.classGrades(winnerCategory),
-                        DataPack.ClassData.classKms(winnerCategory), HTMLConstants.ClassKmsStart, HTMLConstants.End);
-                Essentials.Processes.Writer(finalCode, HTMLFilePath+"classroomKms.html");
+                finalCode = Vitals.Operations.HTML(DataPackages.ClassData.arrayMax(winnerCategory), DataPackages.ClassData.classTeachers(winnerCategory),
+                        DataPackages.ClassData.classDonations(winnerCategory), DataPackages.ClassData.classCodes(winnerCategory), DataPackages.ClassData.totalStudents(winnerCategory),
+                        DataPackages.ClassData.classKms(winnerCategory), HTMLConstants.ClassKmsHeader, HTMLConstants.DefaultFooter);
+                Vitals.Operations.Writer(finalCode, HTMLFilePath+"classroomKms.html");
                 System.out.println("classroomKms"+winnerCategory+".html in WalkForWenjack.project competed\n");
             }
             public static void participants() throws IOException {
-                finalCode = Essentials.Processes.HTML(DataPack.ParticipantData.arrayMax(winnerCategory), DataPack.ParticipantData.participantTeachers(winnerCategory),
-                        DataPack.ParticipantData.participantDonations(winnerCategory), DataPack.ParticipantData.participantNames(winnerCategory),
-                        DataPack.ParticipantData.participantGrades(winnerCategory), DataPack.ParticipantData.participantKms(winnerCategory),
-                        HTMLConstants.ParticipantKmsStart, HTMLConstants.End);
-                Essentials.Processes.Writer(finalCode, HTMLFilePath+"participantKms.html");
+                finalCode = Vitals.Operations.HTML(DataPackages.ParticipantData.arrayMax(winnerCategory), DataPackages.ParticipantData.participantTeachers(winnerCategory),
+                        DataPackages.ParticipantData.participantDonations(winnerCategory), DataPackages.ParticipantData.participantNames(winnerCategory),
+                        DataPackages.ParticipantData.participantGrades(winnerCategory), DataPackages.ParticipantData.participantKms(winnerCategory),
+                        HTMLConstants.ParticipantKmsHeader, HTMLConstants.DefaultFooter);
+                Vitals.Operations.Writer(finalCode, HTMLFilePath+"participantKms.html");
                 System.out.println("participantKms"+winnerCategory+".html in WalkForWenjack.project competed\n");
             }
         }
@@ -558,38 +588,24 @@ class JavaHTMLDataAutomation {
             public static String  winnerCategory = "\\WinnersByDonations\\"; // Winners for Donations raised
 
             public static void classroom() throws IOException {
-                finalCode = Essentials.Processes.HTML(DataPack.ClassData.arrayMax(winnerCategory), DataPack.ClassData.classTeachers(winnerCategory),
-                        DataPack.ClassData.classDonations(winnerCategory), DataPack.ClassData.classCodes(winnerCategory), DataPack.ClassData.classGrades(winnerCategory),
-                        DataPack.ClassData.classKms(winnerCategory), HTMLConstants.ClassDonationsStart, HTMLConstants.End);
-                Essentials.Processes.Writer(finalCode, HTMLFilePath+"classroomDonations.html");
+                finalCode = Vitals.Operations.HTML(DataPackages.ClassData.arrayMax(winnerCategory), DataPackages.ClassData.classTeachers(winnerCategory),
+                        DataPackages.ClassData.classDonations(winnerCategory), DataPackages.ClassData.classCodes(winnerCategory), DataPackages.ClassData.totalStudents(winnerCategory),
+                        DataPackages.ClassData.classKms(winnerCategory), HTMLConstants.ClassDonationsHeader, HTMLConstants.DefaultFooter);
+                Vitals.Operations.Writer(finalCode, HTMLFilePath+"classroomDonations.html");
                 System.out.println("classroomDonations"+winnerCategory+".html in WalkForWenjack.project competed\n");
             }
             public static void participant() throws IOException {
-                finalCode = Essentials.Processes.HTML(DataPack.ParticipantData.arrayMax(winnerCategory), DataPack.ParticipantData.participantTeachers(winnerCategory),
-                        DataPack.ParticipantData.participantDonations(winnerCategory), DataPack.ParticipantData.participantNames(winnerCategory),
-                        DataPack.ParticipantData.participantGrades(winnerCategory), DataPack.ParticipantData.participantKms(winnerCategory),
-                        HTMLConstants.ParticipantDonationsStart, HTMLConstants.End);
-                Essentials.Processes.Writer(finalCode, HTMLFilePath+"participantDonations.html");
+                finalCode = Vitals.Operations.HTML(DataPackages.ParticipantData.arrayMax(winnerCategory), DataPackages.ParticipantData.participantTeachers(winnerCategory),
+                        DataPackages.ParticipantData.participantDonations(winnerCategory), DataPackages.ParticipantData.participantNames(winnerCategory),
+                        DataPackages.ParticipantData.participantGrades(winnerCategory), DataPackages.ParticipantData.participantKms(winnerCategory),
+                        HTMLConstants.ParticipantDonationsHeader, HTMLConstants.DefaultFooter);
+                Vitals.Operations.Writer(finalCode, HTMLFilePath+"participantDonations.html");
                 System.out.println("participantDonations"+winnerCategory+".html in WalkForWenjack.project competed\n");
             }
 
         }
     }
 
-    // Class for organizing all speech that should be outputted in console during compilation till the end
-    public static class Speech {
-        public static void start() {
-            System.out.println("Initiating WalkForWenjack.project...\n");
-            System.out.println("Retrieving all assets for WalkForWenjack.project...\n");
-            System.out.println("Beginning system process for WalkForWenjack.project...\n");
-        }
-        public static void end() {
-            System.out.println("WalkForWenjack.project completed\n");
-            System.out.println("Do not forget to push all files onto Git Repository to update Github Pages\n");
-            System.out.println("Have a great day\n");
-        }
-    }
-
     // public static void main(String [] args)? If(you.dontKnow(this)) {you.dontknow(Java);}
-    public static void main(String [] args) throws IOException { Essentials.Initiate(); }
+    public static void main(String [] args) throws IOException { Vitals.Initiate(); }
 }
