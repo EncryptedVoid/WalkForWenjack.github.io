@@ -410,8 +410,8 @@ class JavaHTMLDataAutomation {
                             <header>
                                 <h1>CW's Walk For Wenjack Leaderboard - Classrooms</h1>
                                 <nav>
-                                    <a href="HTMLFilesparticipantKms.html" class="active" id="CW">Kilometres</a>
-                                    <a href="HTMLFilesparticipantDonations.html" class="" id="CW">Donations</a>
+                                    <a href="HTMLFilesclassroomKms.html" class="active" id="CW">Kilometres</a>
+                                    <a href="HTMLFilesclassroomDonations.html" class="" id="CW">Donations</a>
                                 </nav>
                             </header>
 
@@ -419,11 +419,11 @@ class JavaHTMLDataAutomation {
                                 <thead>
                                     <tr>
                                         <th id="rank"></th>
-                                        <th id="homeroom">Class Code:</th>
-                                        <th id="name">Class Teacher:</th>
+                                        <th id="homeroom">Teacher:</th>
+                                        <th id="name">Course Code:</th>
                                         <th id="grade">Class Size:</th>
-                                        <th id="kms">Average Kms:</th>
-                                        <th id="donation">Average Donations:</th>
+                                        <th id="kms">Avg. Kms (per student):</th>
+                                        <th id="donation">Avg. Donations (per student):</th>
                                     </tr>
                                 </thead>
                                 
@@ -449,7 +449,6 @@ class JavaHTMLDataAutomation {
                         <div class="tableDiv" id="localUpdateDateDiv">
                             <table>
                                 """+"<tr><td id=\"localUpdateDate\"><i>Last Updated: "+Time()+"</i></td></tr>"+"""  
-                                                              
                                 <tr><td id="localUpdateDate"><i>PLEASE LET ME KNOW IF YOUR INFORMATION IS INCORRECT OR MISSING AT AGAZI2@OCDSB.CA</i></td></tr>
                             </table>
                         </div>
@@ -464,8 +463,8 @@ class JavaHTMLDataAutomation {
                             <header>
                                 <h1>CW's Walk For Wenjack Leaderboard - Classrooms</h1>
                                 <nav>
-                                    <a href="HTMLFilesparticipantKms.html" class="" id="CW">Kilometres</a>
-                                    <a href="HTMLFilesparticipantDonations.html" class="active" id="CW">Donations</a>
+                                    <a href="HTMLFilesclassroomKms.html" class="" id="CW">Kilometres</a>
+                                    <a href="HTMLFilesclassroomDonations.html" class="active" id="CW">Donations</a>
                                 </nav>
                             </header>
                                 
@@ -473,11 +472,11 @@ class JavaHTMLDataAutomation {
                                 <thead>
                                     <tr>
                                         <th id="rank"></th>
-                                        <th id="homeroom">Class Code:</th>
-                                        <th id="name">Class Teacher:</th>
+                                        <th id="homeroom">Teacher:</th>
+                                        <th id="name">Course Code:</th>
                                         <th id="grade">Class Size:</th>
-                                        <th id="kms">Average Kms:</th>
-                                        <th id="donation">Average Donations:</th>
+                                        <th id="kms">Avg. Kms (per student):</th>
+                                        <th id="donation">Avg. Donations (per student):</th>
                                     </tr>
                                 </thead>
                                 
@@ -654,7 +653,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] winnerLevel() throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerLevel.txt", arrayMax(), "Grade ", "", "CW Staff");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerLevel.txt", arrayMax(), "", " Students", "CW Staff");
 
                 for(i = 0; i < arrayMax(); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("winnerLevel", array[i]);
@@ -664,7 +663,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] winnerDonations() throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerDonations.txt", arrayMax(), "$", "", "CW Staff");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerDonations.txt", arrayMax(), "Average $", "", "CW Staff");
 
                 for(i = 0; i < arrayMax(); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("winnerDonation", array[i]);
@@ -674,7 +673,7 @@ class JavaHTMLDataAutomation {
             }
 
             public static String [] winnerKms() throws FileNotFoundException {
-                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerKms.txt", arrayMax(), "", "kms", "CW Staff");
+                array = Vitals.Operations.FormattedTxtToArray(txtFilePath+"winnerKms.txt", arrayMax(), "Average ", "kms", "CW Staff");
 
                 for(i = 0; i < arrayMax(); i++) {
                     array[i] = Vitals.DataConfiguration.DataToTableData("winnerKms", array[i]);
